@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>BreachWatch - About</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="brand">Breach<span>Watch</span></a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="saved.html">Saved</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <h1>About BreachWatch</h1>
+
+      <div class="about-grid">
+
+        <div class="about-card">
+          <h3>The Problem</h3>
+          <p>The NIST NVD website is dense and difficult to navigate. BreachWatch presents the same data in a clean, searchable interface with severity scoring and bookmarking.</p>
+        </div>
+
+        <div class="about-card">
+          <h3>Who It's For</h3>
+          <ul>
+            <li>Developers checking if a dependency has known security issues</li>
+            <li>IT administrators without enterprise security tools</li>
+            <li>Cybersecurity students learning vulnerability management</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3>Data Source</h3>
+          <p>All data comes from the NIST National Vulnerability Database via their free public REST API.</p>
+          <br>
+          <p><code>https://services.nvd.nist.gov/rest/json/cves/2.0</code></p>
+        </div>
+
+        <div class="about-card">
+          <h3>Tech Stack</h3>
+          <ul>
+            <li>Node.js + Express</li>
+            <li>Supabase (saved CVEs database)</li>
+            <li>Chart.js (severity breakdown chart)</li>
+            <li>Swiper.js (search results slider)</li>
+            <li>NIST NVD API</li>
+            <li>HTML, CSS, JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3>API Endpoints</h3>
+          <ul>
+            <li><code>GET /api/critical</code> - recent critical CVEs</li>
+            <li><code>GET /api/search?q=keyword</code> - keyword search</li>
+            <li><code>GET /api/search?cveId=id</code> - CVE ID lookup</li>
+            <li><code>GET /api/saved</code> - retrieve watchlist</li>
+            <li><code>POST /api/saved</code> - save a CVE</li>
+            <li><code>DELETE /api/saved/:cveId</code> - remove a CVE</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

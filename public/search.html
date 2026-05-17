@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>BreachWatch - Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="search.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="brand">Breach<span>Watch</span></a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="saved.html">Saved</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <h1>Search CVEs</h1>
+      <p class="page-sub">Enter a product name or CVE ID to search the NIST database</p>
+
+      <div class="search-form">
+        <div>
+          <label for="searchInput">Product Name or CVE ID</label>
+          <input type="text" id="searchInput" placeholder="e.g. openssl or CVE-2021-44228">
+        </div>
+        <button class="btn-custom" onclick="doSearch()">Search</button>
+      </div>
+      <p class="search-hint-text">Pattern CVE-YYYY-NNNNN triggers direct lookup. Otherwise performs keyword search.</p>
+
+      <div class="section-header hidden" id="resultsHeader">
+        <h2>Search Results</h2>
+        <span id="resultCount"></span>
+      </div>
+
+      <div id="resultsContainer"></div>
+
+      <div class="swiper hidden" id="cveSwiper">
+        <div class="swiper-wrapper" id="swiperWrapper"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+  </body>
+</html>

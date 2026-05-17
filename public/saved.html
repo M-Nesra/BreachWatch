@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>BreachWatch - Saved CVEs</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="saved.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="brand">Breach<span>Watch</span></a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="saved.html">Saved</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <h1>Saved CVEs</h1>
+      <p class="page-sub">Your bookmarked vulnerabilities, stored in Supabase</p>
+
+      <div class="saved-table-section">
+        <div class="section-header">
+          <h2>Your Watchlist</h2>
+          <span id="savedCount"></span>
+        </div>
+
+        <div id="savedContainer">
+          <p class="loading-msg">Loading your watchlist...</p>
+        </div>
+
+        <table id="savedTable" class="hidden">
+          <tr>
+            <th>CVE ID</th>
+            <th>Severity</th>
+            <th>Description</th>
+            <th>Affected Software</th>
+            <th>Date Saved</th>
+            <th>Action</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+  </body>
+</html>

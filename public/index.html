@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>BreachWatch - CVE Vulnerability Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="brand">Breach<span>Watch</span></a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="saved.html">Saved</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <h1>Recent Vulnerabilities</h1>
+      <p class="page-sub">Live data from NIST National Vulnerability Database</p>
+
+      <div class="search-form">
+        <div>
+          <label for="homeSearch">Quick Search</label>
+          <input type="text" id="homeSearch" placeholder="e.g. log4j, openssl, CVE-2021-44228">
+        </div>
+        <button class="btn-custom" onclick="goToSearch()">Search</button>
+      </div>
+
+      <div class="days-buttons">
+        <button class="days-btn active" onclick="changeDays(30, this)">Last 30 Days</button>
+        <button class="days-btn" onclick="changeDays(60, this)">Last 60 Days</button>
+        <button class="days-btn" onclick="changeDays(90, this)">Last 90 Days</button>
+      </div>
+
+      <div class="section-header">
+        <h2>Recent CVEs</h2>
+        <span id="critCount"></span>
+      </div>
+
+      <div class="sort-buttons">
+        <span class="sort-label">Sort by:</span>
+        <button id="sort-date-desc" class="sort-btn" onclick="changeSort('date-desc')">Newest First</button>
+        <button id="sort-date-asc" class="sort-btn" onclick="changeSort('date-asc')">Oldest First</button>
+        <button id="sort-score-desc" class="sort-btn active" onclick="changeSort('score-desc')">Highest Score</button>
+        <button id="sort-score-asc" class="sort-btn" onclick="changeSort('score-asc')">Lowest Score</button>
+      </div>
+
+      <div id="cardsContainer">
+        <p class="loading-msg">Loading vulnerabilities...</p>
+      </div>
+
+      <div class="chart-section hidden" id="chartSection">
+        <h2>Severity Breakdown</h2>
+        <canvas id="severityChart" height="80"></canvas>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+  </body>
+</html>
