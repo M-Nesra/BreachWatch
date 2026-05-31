@@ -1,62 +1,2079 @@
-<html>
-  <head>
-    <title>BreachWatch - CVE Vulnerability Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" defer></script>
-    <script src="index.js" defer></script>
-  </head>
-  <body>
-    <nav>
-      <a href="index.html" class="brand">Breach<span>Watch</span></a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="search.html">Search</a></li>
-        <li><a href="saved.html">Saved</a></li>
-        <li><a href="about.html">About</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity Risk Assessment, Business Communications & Vulnerability Analysis Intern — University of Maryland GERIP</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E21833;
+    --red-dark: #b01020;
+    --navy: #1a2744;
+    --gold: #c9a84c;
+    --dark: #111111;
+    --mid: #555555;
+    --light: #909090;
+    --rule: #e2e2e2;
+    --bg: #fafaf8;
+    --white: #ffffff;
+    --tag-bg: #f2f2ef;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* TOP STRIPE */
+  .top-stripe {
+    background: var(--red);
+    height: 5px;
+    width: 100%;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .umd-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* University of Maryland Logo */
+  .umd-shield {
+    width: 52px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .umd-text p {
+    font-size: 11px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .partner-block {
+    text-align: right;
+  }
+
+  .partner-block .partner-label {
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--light);
+    margin-bottom: 3px;
+  }
+
+  .partner-logos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-end;
+  }
+
+  .partner-pill {
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--mid);
+  }
+
+  .divider-v {
+    width: 1px;
+    height: 40px;
+    background: var(--rule);
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--white);
+    padding: 44px 60px 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .program-badge {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  .hero h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.18;
+    max-width: 680px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-location {
+    font-size: 13px;
+    color: var(--mid);
+    margin-bottom: 18px;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--mid);
+  }
+
+  .hero-meta-item::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--light);
+    border-radius: 50%;
+  }
+
+  .hero-meta-item:first-child::before { display: none; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 4px 11px;
+    font-size: 11px;
+    color: var(--mid);
+    font-weight: 400;
+  }
+
+  .tag.red {
+    background: #fff0f2;
+    border-color: #f5c0c8;
+    color: var(--red-dark);
+    font-weight: 500;
+  }
+
+  /* BODY LAYOUT */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 60px 60px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 38px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+
+  .overview-text {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--dark);
+    max-width: 720px;
+  }
+
+  /* RESPONSIBILITY GROUP */
+  .resp-group {
+    margin-bottom: 24px;
+  }
+
+  .resp-group-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--red);
+    line-height: 1.3;
+  }
+
+  .resp-group-title.blue {
+    border-left-color: #1a4fa0;
+    color: #1a4fa0;
+  }
+
+  .resp-group-title.red {
+    color: var(--red-dark);
+  }
+
+  ul.resp-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.resp-list li {
+    padding: 5px 0 5px 16px;
+    position: relative;
+    font-size: 13.5px;
+    color: #333;
+    line-height: 1.6;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  ul.resp-list li:last-child { border-bottom: none; }
+
+  ul.resp-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--light);
+    font-weight: 300;
+  }
+
+  /* QUAL TABLE */
+  .qual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .qual-col {
+    padding: 18px 20px;
+  }
+
+  .qual-col:first-child {
+    border-right: 1px solid var(--rule);
+  }
+
+  .qual-col h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .qual-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .qual-col ul li {
+    font-size: 12.5px;
+    color: #444;
+    padding: 4px 0 4px 13px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .qual-col ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--light);
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  /* TECH STACK */
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .tool-tag {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 5px 13px;
+    font-size: 12px;
+    color: var(--mid);
+    font-family: 'DM Sans', monospace;
+  }
+
+  /* GAIN GRID */
+  .gain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .gain-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+
+  .gain-card h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+  }
+
+  .gain-card p {
+    font-size: 12px;
+    color: var(--light);
+    line-height: 1.55;
+  }
+
+  /* SUPERVISOR ROW */
+  .supervisor-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .supervisor-item label {
+    display: block;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--light);
+    margin-bottom: 3px;
+  }
+
+  .supervisor-item span {
+    font-size: 13px;
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 22px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  footer .footer-right {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    body { background: white; }
+    .top-stripe { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="umd-brand">
+    <a href="https://www.umd.edu" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;">
+    <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAH8A4MDASIAAhEBAxEB/8QAHQABAAIDAQEBAQAAAAAAAAAAAAcIBQYJBAMCAf/EAGkQAAEDAwICBQUGDwkMBgcJAQEAAgMEBQYHERIhCBMxQVEUImFxgQkWMpGhsRUzOEJSVmJydJKUsrPB0SM0NTdDc3WCohcYJDZTY3aTlcLS00dVV2SDtCU5VGXD4fAmKERFRliEhaPx/8QAHAEBAAIDAQEBAAAAAAAAAAAAAAQGAwUHAgEI/8QAPxEBAAEDAgMEBwYEBAcBAQAAAAECAwQFEQYhMRJBUYETImFxkaGxBxQywdHwI0Ji4RUzgrIlNDVDUnLxU6L/2gAMAwEAAhEDEQA/ALloiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiLAX7NsQsTzHeMmtFFKDt1UtWwSb+hm/EfiQZ9FoFVq/hEUgjp6utrJD8FsFFJu773iDeL2brEVeu2IwVrKFtLc3Vb+TacxASn/wwS/5FFqzsamdpuR8YZItVz0hKyKL7JrVj91ySqx+ntlxfX0lKaqphja2R8UYIHNoPbz327VteO55iWQEMtl8pJJjy6l7+rk38OF2x39Sy279u7TFVE7xPT2ssYd+qia4omYjrO3T3+DZUXgvV2gtFI6rq4al0DRu98MRk4B4kDn8iw1p1Cwm6ODaPJbcXnlwyS9Wd/DZ2y9zVETtMvlGJfuUduiiZiO+ImYbQi/MUkc0YkikZIx3MOadwfav0vSP0EREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERARYy8XyhtrSJH8coHwGnn7fBaHkuRX65MNPbnxUjXj6Ydy1g8dhzefRuB8yq+scW6fpkzbqq7VfhHd756R859idjafev84jaG3ZdmuM4rRmqvd1gpm9jW8W7nnwaBzJ9AUZ3XVvLr0x/vMxaKgogCfopfXmKMD7IRDziPXsov1GzrANN6h9XcpZMjyhzfNY94kmB9J+DC30AD1FRnZMkvWqD6rK9Rb0LHgVufuaKneY21TxzEQ285/pPb3Dbflov8e1XNszkUU+itd0zEzNW/SKKetUz3TvET4Jf3Sxaq7Ez2qvDw989I+aYHfRHO6mSG+5tfMpha4iaC3Sm32tni0mIh0m3pc5avmmoulemcT7fY7XQ1d0aOF0NuY1vnf5yYecfjJUN6q633G+Ux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" alt="University of Maryland" style="height:60px; width:auto; flex-shrink:0;">
+    </a>
+
+    <div class="umd-text">
+      <p>College of Information Studies · iSchool</p>
+    </div>
+  </div>
+
+  <div class="partner-block">
+    <div class="partner-label">In partnership with</div>
+    <div class="partner-logos">
+      <div class="partner-pill">National University of Singapore</div>
+      <div class="partner-pill">Autonomous University of Barcelona</div>
+    </div>
+  </div>
+  <div style="margin-left:auto;">
+    <button onclick="openLogin()" style="background:var(--red);color:white;border:none;border-radius:4px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;cursor:pointer;letter-spacing:0.02em;">Log In</button>
+  </div>
+</div>
+
+<!-- PAGE NAV TOP -->
+<div class="page-nav" id="pageNav">
+  <button class="active" onclick="switchPage('p1', this)">Position Overview</button>
+  <button onclick="switchPage('p2', this)">Program &amp; Locations</button>
+  <button onclick="switchPage('p3', this)">Selection &amp; Faculty</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="program-badge">University of Maryland Global Engagement &amp; Research Internship Program (GERIP)</div>
+  <h2>Cybersecurity Risk Assessment, Business Communications &amp; Vulnerability Analysis Intern</h2>
+  <div class="hero-location">National University of Singapore &amp; Autonomous University of Barcelona &nbsp;·&nbsp; Singapore <span style="color:var(--light);margin:0 6px;">or</span> Barcelona, Spain</div>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">Summer 2026 · 8 Weeks</div>
+    <div class="hero-meta-item">Morning / Afternoon</div>
+    <div class="hero-meta-item">On-site · Singapore or Barcelona, Spain</div>
+    <div class="hero-meta-item">English (Advanced)</div>
+  </div>
+
+  <div class="tags">
+    <span class="tag">Cybersecurity</span>
+    <span class="tag">AI Research</span>
+    <span class="tag">Technical Communications</span>
+    <span class="tag">Information Science</span>
+    <span class="tag">6 Credits · Academic Credit Eligible</span>
+    <span class="tag red">International Placement</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- Supervisors -->
+  <div class="section">
+    <div class="section-label">Supervision &amp; Coordination</div>
+    <div class="supervisor-row">
+      <div class="supervisor-item">
+        <label>Singapore Host Institution</label>
+        <span>National University of Singapore (NUS) · School of Computing</span>
+      </div>
+      <div class="supervisor-item">
+        <label>Barcelona Host Institution</label>
+        <span>Autonomous University of Barcelona (UAB) · Department of Computer Science</span>
+      </div>
+      <div class="supervisor-item">
+        <label>University of Maryland Coordinator</label>
+        <span>iSchool Global Programs Office</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <p class="overview-text">
+      The GERIP program places participants inside active business and technology environments where cybersecurity threats are real, consequences are significant, and mitigation work happens daily. Participants are embedded with enterprise-facing research teams to identify, analyze, and help address the security vulnerabilities that organizations in the region face — from AI system exposures to data governance failures to network-level risk. This is hands-on, deliverable-driven work, not a classroom exercise. Participants select a placement site based on their field interests: Singapore through the National University of Singapore's School of Computing, working closely with regional industry partners; or Barcelona through the Autonomous University of Barcelona, embedded in Europe's AI regulatory and enterprise security ecosystem. Both sites offer direct mentorship from University of Maryland faculty and host institution researchers, with structured output expectations from week one.
+    </p>
+  </div>
+
+  <!-- Responsibilities -->
+  <div class="section">
+    <div class="section-label">Responsibilities</div>
+
+    <div class="resp-group">
+      <div class="resp-group-title red">Cybersecurity Research &amp; Analysis</div>
+      <ul class="resp-list">
+        <li>Conduct literature reviews on AI-related cybersecurity threats including adversarial machine learning, prompt injection, model poisoning, and deepfake-enabled disinformation</li>
+        <li>Assist in documenting and categorizing known vulnerabilities in AI systems and agentic pipelines, referencing frameworks such as MITRE ATLAS and OWASP Top 10 for LLMs</li>
+        <li>Support threat modeling exercises by compiling attacker profiles, attack vectors, and case studies relevant to ongoing lab projects</li>
+        <li>Maintain a running database of security incidents, CVEs, and policy developments related to AI and media infrastructure</li>
+        <li>Contribute to red-team documentation — writing up findings, reproducing reported exploits in sandboxed environments, and summarizing results for the research team</li>
       </ul>
-    </nav>
+    </div>
 
-    <div class="main-content">
-      <h1>Recent Vulnerabilities</h1>
-      <p class="page-sub">Live data from NIST National Vulnerability Database</p>
+    <div class="resp-group">
+      <div class="resp-group-title red">Technical AI Systems Support</div>
+      <ul class="resp-list">
+        <li>Assist in developing and testing agentic AI workflows with a focus on identifying failure modes, security gaps, and unintended behaviors in deployed systems</li>
+        <li>Run structured evaluations of AI tools — documenting outputs, flagging anomalies, and tracking performance across versions</li>
+        <li>Support data pipeline tasks including cleaning, labeling, and preparing datasets with attention to data integrity and privacy compliance</li>
+        <li>Help build and maintain internal technical documentation including system architecture notes, API usage logs, and tool evaluation reports</li>
+        <li>Assist with Python scripting and automation to streamline repetitive research workflows such as bulk data collection, parsing, and formatting</li>
+      </ul>
+    </div>
 
-      <div class="search-form">
-        <div>
-          <label for="homeSearch">Quick Search</label>
-          <input type="text" id="homeSearch" placeholder="e.g. log4j, openssl, CVE-2021-44228">
+    <div class="resp-group">
+      <div class="resp-group-title blue">Research &amp; Documentation</div>
+      <ul class="resp-list">
+        <li>Support qualitative and quantitative research workflows across active lab projects — study design, source verification, and structured note-taking</li>
+        <li>Build and maintain annotated bibliographies covering AI security, polarization, media manipulation, and related policy fields</li>
+        <li>Compile thematic research briefs drawing on government reports, academic publications, and vetted news sources with attention to regional and U.S. regulatory developments</li>
+        <li>Draft internal memos and working documents that distill technical findings into accessible language for cross-disciplinary team members</li>
+      </ul>
+    </div>
+
+    <div class="resp-group">
+      <div class="resp-group-title blue">Technical Communications &amp; Outreach</div>
+      <ul class="resp-list">
+        <li>Draft and edit external-facing content — blog posts, explainers, social media threads, and newsletters — translating technical security research for non-specialist audiences</li>
+        <li>Conduct user interviews and field tests to gather feedback on AI tools and research prototypes, then synthesize results into structured reports</li>
+        <li>Design visual communication assets such as threat diagrams, data flow charts, and infographics that make security concepts approachable and shareable</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Qualifications -->
+  <div class="section">
+    <div class="section-label">Qualifications</div>
+    <div class="qual-grid">
+      <div class="qual-col">
+        <h4>Required</h4>
+        <ul>
+          <li>Currently enrolled at the University of Maryland (junior or senior standing preferred)</li>
+          <li>Major in Information Science, Computer Science, or related field</li>
+          <li>Foundational knowledge of cybersecurity concepts</li>
+          <li>Strong written and verbal communication skills in English</li>
+          <li>Excellent organizational skills and attention to detail</li>
+          <li>Ability to manage multiple deadlines in an international team setting</li>
+        </ul>
+      </div>
+      <div class="qual-col">
+        <h4>Preferred</h4>
+        <ul>
+          <li>CompTIA Security+, CEH, or Google Cybersecurity Certificate</li>
+          <li>Hands-on experience with Wireshark, Metasploit, or Nmap</li>
+          <li>Python scripting for data processing or automation</li>
+          <li>Familiarity with AI/ML concepts or LLM behavior</li>
+          <li>Spanish or Mandarin language proficiency (a plus, not required)</li>
+          <li>Prior TA, research, or leadership experience</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="section">
+    <div class="section-label">Tech Stack &amp; Tools</div>
+    <div class="tools-grid">
+      <span class="tool-tag">Python</span>
+      <span class="tool-tag">Wireshark</span>
+      <span class="tool-tag">Metasploit</span>
+      <span class="tool-tag">Nmap</span>
+      <span class="tool-tag">Burp Suite</span>
+      <span class="tool-tag">MITRE ATLAS</span>
+      <span class="tool-tag">OWASP LLM Top 10</span>
+      <span class="tool-tag">Zotero</span>
+      <span class="tool-tag">Git / GitHub</span>
+      <span class="tool-tag">LLM APIs</span>
+      <span class="tool-tag">SQL (basic)</span>
+      <span class="tool-tag">Canva / Figma</span>
+    </div>
+  </div>
+
+  <!-- What You'll Gain -->
+  <div class="section">
+    <div class="section-label">What You'll Gain</div>
+    <div class="gain-grid">
+      <div class="gain-card">
+        <h4>Academic Credit — 6 Credits</h4>
+        <p>Participants earn 6 University of Maryland experiential learning credits through the iSchool Global Programs Office upon successful program completion.</p>
+      </div>
+      <div class="gain-card">
+        <h4>Global Network</h4>
+        <p>Direct access to host institution researchers and contacts across regional tech and policy networks</p>
+      </div>
+      <div class="gain-card">
+        <h4>Published Work</h4>
+        <p>Credited contributions to reports, tool evaluations, and public-facing research outputs</p>
+      </div>
+      <div class="gain-card">
+        <h4>Career Edge</h4>
+        <p>Internationally competitive profile for cybersecurity, AI policy, and research roles</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE NAV -->
+<style>
+  .page-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 60px;
+    display: flex;
+    gap: 0;
+  }
+  .page-nav button {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 14px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--light);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .page-nav button:hover { color: var(--dark); }
+  .page-nav button.active {
+    color: var(--red);
+    border-bottom-color: var(--red);
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* PROFESSOR CARDS */
+  .prof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .prof-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .prof-card-top {
+    background: var(--navy);
+    padding: 20px 22px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .prof-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  .prof-name {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+
+  .prof-title {
+    color: rgba(255,255,255,0.55);
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .prof-card-body {
+    padding: 16px 22px;
+  }
+
+  .prof-card-body p {
+    font-size: 12.5px;
+    color: var(--mid);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  .prof-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .prof-tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 3px 9px;
+    font-size: 10.5px;
+    color: var(--mid);
+  }
+
+  /* HOUSING */
+  .housing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .housing-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .housing-card h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .housing-card h4 .hicon {
+    width: 20px;
+    height: 20px;
+    background: var(--tag-bg);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .housing-card p {
+    font-size: 12.5px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .housing-note {
+    background: #fff8e6;
+    border: 1px solid #f5d98a;
+    border-radius: 4px;
+    padding: 13px 16px;
+    font-size: 12.5px;
+    color: #7a5c00;
+    line-height: 1.6;
+  }
+
+  /* SELECTION */
+  .selection-hero {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .selection-hero .cohort-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 64px;
+    font-weight: 600;
+    color: white;
+    line-height: 1;
+  }
+
+  .selection-hero .cohort-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+  }
+
+  .selection-hero .cohort-desc {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .selection-hero .cohort-desc p {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+  }
+
+  .cohort-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .selection-steps {
+    counter-reset: step;
+  }
+
+  .selection-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .selection-step:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-body h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 3px;
+  }
+
+  .step-body p {
+    font-size: 12.5px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .timeline-item {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 12px 14px;
+    border-top: 3px solid var(--red);
+  }
+
+  .timeline-item .t-date {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .timeline-item .t-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  /* FUNDING */
+  .funding-hero {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .funding-stat {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 20px 20px 16px;
+    text-align: center;
+  }
+  .funding-stat .f-amount {
+    font-family: 'EB Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .funding-stat .f-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(255,255,255,0.45);
+  }
+  .funding-stat .f-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 3px;
+  }
+  .funding-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    font-size: 13px;
+  }
+  .funding-table thead tr { background: var(--tag-bg); }
+  .funding-table thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--light);
+    font-weight: 600;
+    border-bottom: 1px solid var(--rule);
+  }
+  .funding-table tbody tr { border-bottom: 1px solid var(--rule); }
+  .funding-table tbody tr:last-child { border-bottom: none; }
+  .funding-table tbody td {
+    padding: 10px 14px;
+    color: var(--dark);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .funding-table tbody td:first-child { font-weight: 500; width: 32%; }
+  .funding-table tbody td.funded-by { color: var(--mid); font-size: 12px; width: 25%; }
+  .badge-funded {
+    display: inline-block;
+    background: #e8f5e9; color: #2e7d32;
+    border: 1px solid #c8e6c9;
+    border-radius: 3px; padding: 2px 8px;
+    font-size: 10.5px; font-weight: 600;
+  }
+  .badge-partial {
+    display: inline-block;
+    background: #fff8e1; color: #f57f17;
+    border: 1px solid #ffe082;
+    border-radius: 3px; padding: 2px 8px;
+    font-size: 10.5px; font-weight: 600;
+  }
+  .badge-self {
+    display: inline-block;
+    background: var(--tag-bg); color: var(--mid);
+    border: 1px solid var(--rule);
+    border-radius: 3px; padding: 2px 8px;
+    font-size: 10.5px; font-weight: 600;
+  }
+
+  /* DINING */
+  .dining-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .dining-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .dining-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0; margin-top: 1px;
+  }
+  .dining-card h4 { font-size: 12px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+  .dining-card p { font-size: 11.5px; color: var(--mid); line-height: 1.55; }
+  .dining-note {
+    background: #f0f7ff;
+    border: 1px solid #c5ddf7;
+    border-radius: 4px;
+    padding: 13px 16px;
+    font-size: 12.5px;
+    color: #1a4a80;
+    line-height: 1.6;
+  }
+</style>
+
+<!-- PAGE 1 wrapper -->
+<div id="p1" class="page active">
+  <!-- What You'll Gain already in the DOM above, this page ends here -->
+</div>
+
+<!-- PAGE 2 -->
+<div id="p2" class="page">
+  <div class="content">
+
+    <!-- HOUSING -->
+    <div class="section">
+      <div class="section-label">Housing &amp; Accommodation</div>
+      <div class="housing-grid">
+        <div class="housing-card">
+          <h4><span class="hicon">🏠</span> Accommodation Type</h4>
+          <p>Selected interns are housed in <strong>on-campus university dormitories</strong> at their respective placement site — either NUS Kent Ridge in Singapore or UAB on-campus residences in Bellaterra, Barcelona. Rooms are fully furnished double-occupancy units with shared common areas, study lounges, and laundry facilities on each floor.</p>
         </div>
-        <button class="btn-custom" onclick="goToSearch()">Search</button>
+        <div class="housing-card">
+          <h4><span class="hicon">📍</span> Location</h4>
+          <p><strong>Singapore:</strong> NUS Kent Ridge campus, centrally located with MRT access via Kent Ridge and one-north stations. <strong>Barcelona:</strong> UAB Bellaterra campus — a self-contained university district 30 minutes from central Barcelona by train (FGC line), with direct access to the city and surrounding research hubs.</p>
+        </div>
+        <div class="housing-card">
+          <h4><span class="hicon">📋</span> What's Included</h4>
+          <p>Housing cost is fully subsidized through the GERIP program. Interns receive a furnished room, building Wi-Fi, access to campus dining halls, recreation facilities, and 24-hour security. A one-time welcome kit is provided upon arrival at both sites.</p>
+        </div>
+        <div class="housing-card">
+          <h4><span class="hicon">🤝</span> Roommate Matching</h4>
+          <p>Interns are matched with fellow GERIP cohort members where possible. A roommate preference form is sent after acceptance. The University of Maryland's iSchool Global Programs Office facilitates introductions prior to arrival.</p>
+        </div>
       </div>
-
-      <div class="days-buttons">
-        <button class="days-btn active" onclick="changeDays(30, this)">Last 30 Days</button>
-        <button class="days-btn" onclick="changeDays(60, this)">Last 60 Days</button>
-        <button class="days-btn" onclick="changeDays(90, this)">Last 90 Days</button>
-      </div>
-
-      <div class="section-header">
-        <h2>Recent CVEs</h2>
-        <span id="critCount"></span>
-      </div>
-
-      <div class="sort-buttons">
-        <span class="sort-label">Sort by:</span>
-        <button id="sort-date-desc" class="sort-btn" onclick="changeSort('date-desc')">Newest First</button>
-        <button id="sort-date-asc" class="sort-btn" onclick="changeSort('date-asc')">Oldest First</button>
-        <button id="sort-score-desc" class="sort-btn active" onclick="changeSort('score-desc')">Highest Score</button>
-        <button id="sort-score-asc" class="sort-btn" onclick="changeSort('score-asc')">Lowest Score</button>
-      </div>
-
-      <div id="cardsContainer">
-        <p class="loading-msg">Loading vulnerabilities...</p>
-      </div>
-
-      <div class="chart-section hidden" id="chartSection">
-        <h2>Severity Breakdown</h2>
-        <canvas id="severityChart" height="80"></canvas>
+      <div class="housing-note">
+        <strong>Note:</strong> The program office provides a pre-departure cost guide and a site-specific living resource packet — either Singapore or Barcelona — to all accepted students.
       </div>
     </div>
 
-    <div id="toast" class="toast"></div>
-  </body>
+    <!-- SITE SELECTION -->
+    <div class="section">
+      <div class="section-label">Placement Site Selection &amp; Why These Locations</div>
+      <p style="font-size:13.5px; color:var(--mid); margin-bottom:16px; line-height:1.65;">Participants select one of two placement sites during the application process based on their research interests and career focus. Both sites represent active University of Maryland international partnerships and are located in countries that are global leaders in technology investment, cybersecurity policy, and AI governance.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+        <div style="background:var(--white); border:1px solid var(--rule); border-radius:6px; overflow:hidden;">
+          <div style="background:var(--navy); padding:16px 20px;">
+            <p style="font-size:13px; font-weight:600; color:white; margin-bottom:3px;">🇸🇬 Singapore</p>
+            <p style="font-size:11px; color:rgba(255,255,255,0.5);">National University of Singapore · School of Computing</p>
+          </div>
+          <div style="padding:16px 20px;">
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">Singapore is one of the most technologically advanced nations in the world and ranks consistently in the top three globally for cybersecurity readiness, according to the ITU Global Cybersecurity Index. The city-state is home to over 80 of the world's top 100 technology companies, including Google, Meta, and Alibaba, which have all established regional headquarters and AI research centers there. Singapore's government has invested over $1 billion SGD in its National AI Strategy, making it Asia-Pacific's most active state actor in AI governance and deployment.</p>
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">The cybersecurity sector alone employs over 10,000 professionals and is projected to grow significantly through 2030, driven by Singapore's role as a regional financial hub and its position as the primary gateway for data flows across Southeast Asia. The Cyber Security Agency of Singapore (CSA) is internationally recognized and works directly with institutions like NUS on threat intelligence and national security research — giving GERIP participants direct proximity to one of the most active public-sector cybersecurity environments in the world.</p>
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">For students, Singapore offers unmatched professional exposure. The city hosts major annual events including the Singapore International Cyber Week (SICW), one of Asia's largest cybersecurity conferences, and the Asia Tech x Singapore (ATxSG) summit. Participants regularly leave with professional contacts spanning government, Big Tech, and regional startups — a network that is difficult to replicate from a U.S. campus. The National University of Singapore is ranked #1 in Asia and top 11 globally, with a School of Computing that produces research directly cited in international AI and security policy.</p>
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">For the University of Maryland, the NUS partnership opens direct access to ASEAN-wide technology governance networks, government-affiliated security research, and the Asia-Pacific regulatory landscape — a region increasingly central to U.S. foreign policy on technology and digital trade.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+              <span style="background:#e8f5e9;border:1px solid #c8e6c9;color:#2e7d32;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">#1 Cybersecurity Index (ITU)</span>
+              <span style="background:#e8f5e9;border:1px solid #c8e6c9;color:#2e7d32;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">80+ Global Tech HQs</span>
+              <span style="background:#e8f5e9;border:1px solid #c8e6c9;color:#2e7d32;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">$1B+ National AI Investment</span>
+              <span style="background:#e8f5e9;border:1px solid #c8e6c9;color:#2e7d32;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">NUS #1 in Asia</span>
+              <span style="background:#e8f5e9;border:1px solid #c8e6c9;color:#2e7d32;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">Asia Cyber Week Host</span>
+            </div>
+            <p style="font-size:11px; color:var(--light); font-style:italic; margin-top:10px;">Best fit for: AI systems security, national cybersecurity policy, Big Tech research environments, Asia-Pacific digital governance.</p>
+          </div>
+        </div>
+        <div style="background:var(--white); border:1px solid var(--rule); border-radius:6px; overflow:hidden;">
+          <div style="background:var(--navy); padding:16px 20px;">
+            <p style="font-size:13px; font-weight:600; color:white; margin-bottom:3px;">🇪🇸 Barcelona, Spain</p>
+            <p style="font-size:11px; color:rgba(255,255,255,0.5);">Autonomous University of Barcelona · Department of Computer Science</p>
+          </div>
+          <div style="padding:16px 20px;">
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">Barcelona has emerged as one of Europe's most dynamic technology and startup ecosystems, ranking among the top five European cities for tech investment and consistently attracting major AI and cybersecurity firms. The city is home to over 1,200 active tech startups and hosts the Mobile World Congress (MWC) — the world's largest annual technology event — which brings over 100,000 professionals and executives from more than 200 countries every year. For participants, simply being in Barcelona during the program period means proximity to a level of global industry activity that few academic settings can match.</p>
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">On the cybersecurity and AI side, Barcelona is increasingly significant because of its position within the European Union's regulatory framework. The EU AI Act — the world's first comprehensive legal framework governing artificial intelligence — is now in effect, making EU-based researchers among the most sought-after voices in global AI policy. Companies and governments worldwide are actively seeking professionals who understand how to operate within GDPR and EU AI Act compliance environments, and hands-on research experience from within the EU is a direct differentiator on the job market. UAB's Department of Computer Science has active collaborations with the European Union Agency for Cybersecurity (ENISA) and contributes to NATO-affiliated security research initiatives.</p>
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">Barcelona also serves as a bridge between the U.S. and European technology markets. Major firms including Amazon Web Services, King, Glovo, and Typeform have significant operations in the city, and the broader Catalonia region hosts Spain's largest concentration of AI research centers. For students with interests in privacy law, AI ethics, or enterprise security, the Barcelona site offers a research environment that directly mirrors where the global conversation on AI governance is happening in real time.</p>
+            <p style="font-size:12.5px; color:var(--mid); line-height:1.65; margin-bottom:10px;">For the University of Maryland, the UAB partnership provides a direct pipeline into European regulatory networks and transatlantic cybersecurity policy forums — positioning the program at the intersection of U.S. and EU approaches to AI governance, an area of growing institutional priority.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+              <span style="background:#e8f0fe;border:1px solid #c5d2f7;color:#1a4fa0;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">EU AI Act Jurisdiction</span>
+              <span style="background:#e8f0fe;border:1px solid #c5d2f7;color:#1a4fa0;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">Top 5 EU Tech City</span>
+              <span style="background:#e8f0fe;border:1px solid #c5d2f7;color:#1a4fa0;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">Mobile World Congress Host</span>
+              <span style="background:#e8f0fe;border:1px solid #c5d2f7;color:#1a4fa0;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">ENISA Partner Institution</span>
+              <span style="background:#e8f0fe;border:1px solid #c5d2f7;color:#1a4fa0;font-size:10.5px;padding:3px 9px;border-radius:3px;font-weight:500;">1,200+ Active Tech Startups</span>
+            </div>
+            <p style="font-size:11px; color:var(--light); font-style:italic; margin-top:10px;">Best fit for: EU AI policy, GDPR and privacy law, enterprise security, transatlantic technology governance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNDING -->
+    <div class="section">
+      <div class="section-label">Funding &amp; Financial Support</div>
+      <p style="font-size:13.5px; color:var(--mid); margin-bottom:16px; line-height:1.65;">The GERIP program is jointly funded by the University of Maryland iSchool Global Programs Office, host institution research budgets, and Symbioliving TECH Co., Ltd. The breakdown below outlines exactly what is covered by the program.</p>
+
+      <div class="funding-hero">
+        <div class="funding-stat">
+          <div class="f-amount">100%</div>
+          <div class="f-label">Housing subsidized</div>
+          <div class="f-sub">On-campus housing covered by program</div>
+        </div>
+        <div class="funding-stat">
+          <div class="f-amount">$1,000</div>
+          <div class="f-label">Monthly research stipend</div>
+          <div class="f-sub">Loaded onto program-issued prepaid card</div>
+        </div>
+        <div class="funding-stat">
+          <div class="f-amount">3x</div>
+          <div class="f-label">Daily meals covered</div>
+          <div class="f-sub">Via on-campus dining plan</div>
+        </div>
+      </div>
+
+      <table class="funding-table">
+        <thead>
+          <tr>
+            <th>Expense</th>
+            <th>Coverage</th>
+            <th class="funded-by">Funded by</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>On-campus housing</td>
+            <td><span class="badge-funded">Fully covered</span></td>
+            <td class="funded-by">Host Institution / GERIP</td>
+            <td>Double-occupancy dorm room for full program duration. No out-of-pocket cost to intern.</td>
+          </tr>
+          <tr>
+            <td>Campus dining plan</td>
+            <td><span class="badge-funded">Fully covered</span></td>
+            <td class="funded-by">GERIP Program Fund</td>
+            <td>Three meals per day at on-campus dining halls. Dietary preferences accommodated (see dining section below).</td>
+          </tr>
+          <tr>
+            <td>Research stipend</td>
+            <td><span class="badge-funded">Fully provided</span></td>
+            <td class="funded-by">Symbioliving TECH Co., Ltd.</td>
+            <td>$1,000 USD/month loaded onto a program-issued prepaid card for research-related and day-to-day expenses during the program.</td>
+          </tr>
+
+          <tr>
+            <td>Program orientation &amp; events</td>
+            <td><span class="badge-funded">Fully covered</span></td>
+            <td class="funded-by">UMD iSchool / GERIP</td>
+            <td>Pre-departure orientation at the University of Maryland, welcome reception at the host site, and cohort activities included.</td>
+          </tr>
+          <tr>
+            <td>International airfare</td>
+            <td><span class="badge-partial">Partially subsidized</span></td>
+            <td class="funded-by">UMD iSchool (50%)</td>
+            <td>The University of Maryland Global Programs Office contributes up to $800 toward round-trip airfare. Remaining balance is covered through program funds.</td>
+          </tr>
+          <tr>
+            <td>Local transportation</td>
+            <td><span class="badge-funded">Fully covered</span></td>
+            <td class="funded-by">GERIP Program Fund</td>
+            <td>A preloaded transit card is provided at arrival orientation, covering all local public transit for the program duration.</td>
+          </tr>
+          <tr>
+            <td>Personal spending budget</td>
+            <td><span class="badge-funded">Fully provided</span></td>
+            <td class="funded-by">GERIP Program Fund</td>
+            <td>Each participant receives a one-time $600 personal spending allowance loaded onto the program prepaid card at arrival, designated for shopping, souvenirs, and personal activities.</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DINING -->
+    <div class="section">
+      <div class="section-label">Dining &amp; Dietary Accommodations</div>
+      <p style="font-size:13.5px; color:var(--mid); margin-bottom:16px; line-height:1.65;">On-campus dining facilities at both sites serve a full range of dietary options at every meal. Interns indicate their dietary preference during onboarding and are assigned to the appropriate dining station. All preferences are accommodated at no additional cost within the included dining plan.</p>
+
+      <div class="dining-grid">
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#fff3e0;">🥩</div>
+          <div>
+            <h4>Halal</h4>
+            <p>Dedicated halal station with certified preparation. No cross-contamination with pork products. Available at all three daily meal periods.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#e8f5e9;">✡</div>
+          <div>
+            <h4>Kosher</h4>
+            <p>Kosher-certified options available at lunch and dinner. Packaged kosher meals also stocked for convenience at the campus convenience store.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#f3e5f5;">🌱</div>
+          <div>
+            <h4>Vegan</h4>
+            <p>Full vegan menu available at every meal. Clearly labeled and prepared separately from animal products.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#e8f5e9;">🥗</div>
+          <div>
+            <h4>Vegetarian</h4>
+            <p>Extensive vegetarian selection at every meal including local, international, and fusion options.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#fce4ec;">🌾</div>
+          <div>
+            <h4>Gluten-free</h4>
+            <p>Gluten-free options labeled across all stations. Staff trained to prevent cross-contact for guests with celiac disease or gluten sensitivity.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#e3f2fd;">🥛</div>
+          <div>
+            <h4>Dairy-free</h4>
+            <p>Dairy-free alternatives available at all meal stations including plant-based milk options at breakfast.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#fff8e1;">🥜</div>
+          <div>
+            <h4>Nut allergy</h4>
+            <p>Nut-free preparation available upon request. Allergen information posted at all stations and available digitally via the dining app.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#f1f8e9;">🍱</div>
+          <div>
+            <h4>Local cuisine</h4>
+            <p>Daily traditional meals from the host country always available alongside international options — from local staples to regional specialties.</p>
+          </div>
+        </div>
+        <div class="dining-card">
+          <div class="dining-icon" style="background:#fafafa;">⚙️</div>
+          <div>
+            <h4>Other preferences</h4>
+            <p>Custom dietary needs not listed above can be submitted during onboarding. The dining team accommodates requests on a case-by-case basis.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dining-note">
+        <strong>Note:</strong> Dietary accommodations are confirmed in writing as part of the official onboarding process. Interns receive a dining confirmation letter specifying their assigned station and meal plan details before departure.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="p3" class="page">
+  <div class="content">
+
+    <!-- PROFESSORS -->
+    <div class="section">
+      <div class="section-label">University of Maryland Faculty Deployment</div>
+      <p style="font-size:13.5px; color:var(--mid); margin-bottom:8px; line-height:1.65;">Two University of Maryland faculty members are assigned to each placement site — four total across the program — providing on-the-ground academic oversight, leading technical workshops, and serving as the primary point of contact between participants and the iSchool Global Programs Office throughout the internship period.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;">
+        <div style="background:#fff0f2;border:1px solid #f5c0c8;border-radius:4px;padding:10px 14px;">
+          <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--red-dark);margin-bottom:3px;">🇸🇬 Singapore Site</p>
+          <p style="font-size:12px;color:var(--mid);">Dr. Michelle Mazurek · Dr. Jessica Vitak</p>
+        </div>
+        <div style="background:#f0f4ff;border:1px solid #c5d2f7;border-radius:4px;padding:10px 14px;">
+          <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#1a4fa0;margin-bottom:3px;">🇪🇸 Barcelona Site</p>
+          <p style="font-size:12px;color:var(--mid);">Dr. Nirupama Bulusu · Dr. Marshini Chetty</p>
+        </div>
+      </div>
+
+      <div class="prof-grid" style="grid-template-columns:1fr 1fr;gap:14px;">
+
+        <div class="prof-card">
+          <div class="prof-card-top">
+            <div class="prof-avatar">MM</div>
+            <div>
+              <div class="prof-name">Dr. Michelle Mazurek</div>
+              <div class="prof-title">Associate Professor, Computer Science &amp; UMIACS<br/>Director, Maryland Cybersecurity Center (MC2) · Singapore</div>
+            </div>
+          </div>
+          <div class="prof-card-body">
+            <p>Dr. Mazurek leads research at the intersection of usable security, privacy, and human-computer interaction. She directs the Maryland Cybersecurity Center and has published extensively on security decision-making, authentication systems, and privacy-protective technologies. At NUS she leads the cybersecurity research and red-team documentation track and delivers the week-two intensive on threat modeling and human factors in AI security.</p>
+            <div class="prof-tags">
+              <span class="prof-tag">Usable Security</span>
+              <span class="prof-tag">Privacy</span>
+              <span class="prof-tag">HCI</span>
+              <span class="prof-tag">MC2 Director</span>
+              <span class="prof-tag">Authentication Systems</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prof-card">
+          <div class="prof-card-top">
+            <div class="prof-avatar">JV</div>
+            <div>
+              <div class="prof-name">Dr. Jessica Vitak</div>
+              <div class="prof-title">Associate Professor, College of Information Studies<br/>Human-Computer Interaction Lab · Singapore</div>
+            </div>
+          </div>
+          <div class="prof-card-body">
+            <p>Dr. Vitak's research focuses on data privacy, algorithmic transparency, and the social implications of AI-driven platforms. At iSchool she co-leads the HCI Lab and has received NSF funding for work on user awareness of data collection practices. At NUS she supervises the technical communications and outreach track and facilitates sessions on responsible AI documentation and public-facing research writing.</p>
+            <div class="prof-tags">
+              <span class="prof-tag">Data Privacy</span>
+              <span class="prof-tag">Algorithmic Transparency</span>
+              <span class="prof-tag">AI &amp; Society</span>
+              <span class="prof-tag">NSF-funded</span>
+              <span class="prof-tag">iSchool</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prof-card">
+          <div class="prof-card-top">
+            <div class="prof-avatar">NB</div>
+            <div>
+              <div class="prof-name">Dr. Nirupama Bulusu</div>
+              <div class="prof-title">Associate Professor, Computer Science<br/>Distributed Systems &amp; IoT Security Lab · Barcelona</div>
+            </div>
+          </div>
+          <div class="prof-card-body">
+            <p>Dr. Bulusu's research spans distributed systems, IoT security, and privacy-preserving data collection — directly relevant to the Barcelona site's focus on networked infrastructure and EU data regulation. She coordinates the technical AI systems support track at UAB and leads a hands-on workshop on vulnerability analysis in distributed and embedded environments, drawing on her extensive work with government and industry partners.</p>
+            <div class="prof-tags">
+              <span class="prof-tag">IoT Security</span>
+              <span class="prof-tag">Distributed Systems</span>
+              <span class="prof-tag">Privacy</span>
+              <span class="prof-tag">Network Infrastructure</span>
+              <span class="prof-tag">Computer Science</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prof-card">
+          <div class="prof-card-top">
+            <div class="prof-avatar">MC</div>
+            <div>
+              <div class="prof-name">Dr. Marshini Chetty</div>
+              <div class="prof-title">Associate Professor, College of Information Studies<br/>Networking &amp; Privacy Research Group · Barcelona</div>
+            </div>
+          </div>
+          <div class="prof-card-body">
+            <p>Dr. Chetty researches internet privacy, network security, and the human dimensions of digital infrastructure — areas that align directly with UAB's work on EU AI governance and cross-border data protection. At Barcelona she oversees the research documentation and policy communications track and co-leads sessions on GDPR-aligned security research methodology and responsible disclosure practices in international contexts.</p>
+            <div class="prof-tags">
+              <span class="prof-tag">Internet Privacy</span>
+              <span class="prof-tag">Network Security</span>
+              <span class="prof-tag">EU AI Policy</span>
+              <span class="prof-tag">GDPR Research</span>
+              <span class="prof-tag">iSchool</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PRE-DEPARTURE WORKSHOPS -->
+    <div class="section">
+      <div class="section-label">Pre-Departure Training Program</div>
+      <p style="font-size:13.5px; color:var(--mid); margin-bottom:16px; line-height:1.65;">All accepted participants are required to complete a structured six-week pre-departure training program held on the University of Maryland campus before travel. Attendance is mandatory and completion is a condition of program participation. The curriculum is split between site-specific cultural and logistical preparation and technical research onboarding, ensuring participants arrive ready to contribute from day one.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+
+        <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;border-top:3px solid var(--red);">
+          <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:10px;">Week 1 — Program Orientation</p>
+          <ul style="list-style:none;padding:0;font-size:12.5px;color:var(--mid);line-height:1.7;">
+            <li>— Program structure, expectations, and code of conduct</li>
+            <li>— Meet faculty supervisors and cohort members</li>
+            <li>— Overview of host institution research agendas</li>
+            <li>— Emergency protocols, travel insurance, and safety briefing</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;border-top:3px solid var(--red);">
+          <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:10px;">Week 2 — Cultural &amp; Regional Context</p>
+          <ul style="list-style:none;padding:0;font-size:12.5px;color:var(--mid);line-height:1.7;">
+            <li>— Site-specific cultural norms, etiquette, and daily life</li>
+            <li>— Legal frameworks and student rights abroad</li>
+            <li>— Religious accommodations and dietary practices at site</li>
+            <li>— Language basics: Mandarin (Singapore) / Catalan/Spanish (Barcelona)</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;border-top:3px solid var(--navy);">
+          <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);margin-bottom:10px;">Week 3 — Technical Research Foundations</p>
+          <ul style="list-style:none;padding:0;font-size:12.5px;color:var(--mid);line-height:1.7;">
+            <li>— Introduction to host lab research projects and active datasets</li>
+            <li>— AI security frameworks: MITRE ATLAS, OWASP LLM Top 10</li>
+            <li>— Lab tool setup: Python environments, Git, API access</li>
+            <li>— Academic research methods and documentation standards</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;border-top:3px solid var(--navy);">
+          <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);margin-bottom:10px;">Week 4 — Cybersecurity Skills Intensive</p>
+          <ul style="list-style:none;padding:0;font-size:12.5px;color:var(--mid);line-height:1.7;">
+            <li>— Hands-on labs: threat modeling, vulnerability scanning, red-team basics</li>
+            <li>— Responsible disclosure and ethical hacking frameworks</li>
+            <li>— Technical writing for security research audiences</li>
+            <li>— Capstone exercise: mock vulnerability assessment and report</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;border-top:3px solid var(--navy);">
+          <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);margin-bottom:10px;">Week 5 — Communications &amp; Policy</p>
+          <ul style="list-style:none;padding:0;font-size:12.5px;color:var(--mid);line-height:1.7;">
+            <li>— Translating technical findings for non-specialist audiences</li>
+            <li>— AI policy landscape: U.S., EU AI Act, Singapore PDPA frameworks</li>
+            <li>— Research dissemination: blogs, briefs, infographics, social content</li>
+            <li>— Cross-cultural professional communication in international labs</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;border-top:3px solid var(--gold);">
+          <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#a07820;margin-bottom:10px;">Week 6 — Pre-Departure Clearance</p>
+          <ul style="list-style:none;padding:0;font-size:12.5px;color:var(--mid);line-height:1.7;">
+            <li>— Final faculty evaluation and readiness sign-off</li>
+            <li>— Visa documentation, travel coordination, housing check-in guide</li>
+            <li>— Full cohort dinner and formal program send-off</li>
+            <li>— 24/7 emergency contact assignment and communication protocols</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="housing-note">
+        <strong>Note:</strong> Participants who do not complete all six workshop weeks or fail the Week 4 technical capstone evaluation are not eligible to travel. A make-up session is offered once for the capstone only.
+      </div>
+    </div>
+
+    <!-- SELECTION -->
+    <div class="section">
+      <div class="section-label">Cohort Selection</div>
+
+      <div class="selection-hero">
+        <div style="text-align:center;">
+          <div class="cohort-num">10</div>
+          <div class="cohort-label">Total participants selected</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;">5 per site · Singapore &amp; Barcelona</div>
+        </div>
+        <div class="cohort-divider"></div>
+        <div style="text-align:center;">
+          <div class="cohort-num" style="font-size:40px;">~4%</div>
+          <div class="cohort-label">Estimated acceptance rate</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;">Based on projected applicant pool of 250+</div>
+        </div>
+        <div class="cohort-divider"></div>
+        <div class="cohort-desc">
+          <p>GERIP is one of the most selective international research programs offered through the University of Maryland iSchool. With only five spots per site, the program is intentionally small — every participant is assigned a named faculty mentor, attends all lab meetings as a full contributor, and leaves with documented research output. Selection is competitive across three elimination rounds before a final offer is extended.</p>
+        </div>
+      </div>
+
+      <div class="selection-steps">
+        <div class="selection-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Written Application <span style="font-size:11px;font-weight:400;color:var(--light);margin-left:8px;">~250 applicants advance</span></h4>
+            <p>Submit a resume, unofficial transcript, a 400-word personal statement addressing your interest in AI security research and how this placement connects to your academic and career goals, and a completed site preference form indicating Singapore or Barcelona with a written rationale. Applications missing any component are automatically disqualified.</p>
+          </div>
+        </div>
+        <div class="selection-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Technical Writing Sample <span style="font-size:11px;font-weight:400;color:var(--light);margin-left:8px;">~80 applicants advance</span></h4>
+            <p>Submit one technical writing sample (500–800 words) — a lab report, security analysis, research summary, or documentation you have authored independently. Reviewers assess technical accuracy, clarity for a non-specialist audience, and evidence of structured analytical thinking. AI-generated submissions are disqualified upon detection.</p>
+          </div>
+        </div>
+        <div class="selection-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Faculty Review &amp; Shortlist <span style="font-size:11px;font-weight:400;color:var(--light);margin-left:8px;">30 candidates shortlisted</span></h4>
+            <p>Complete applications are reviewed by a panel of four faculty supervisors — Dr. Mazurek, Dr. Vitak, Dr. Bulusu, and Dr. Chetty — alongside the iSchool Global Programs Office. Each application receives independent scores across five criteria: technical preparation, research literacy, communication quality, site fit, and academic standing. The top 30 candidates across both sites are advanced to interview.</p>
+          </div>
+        </div>
+        <div class="selection-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Interview Process — 5 Parts <span style="font-size:11px;font-weight:400;color:var(--light);margin-left:8px;">30 candidates → 10 offers</span></h4>
+            <p style="margin-bottom:10px;">The interview process is conducted in five sequential parts over two sessions. All parts are required. Candidates who do not complete every part are not considered for final offers.</p>
+
+            <div style="border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:4px;">
+              <div style="background:var(--tag-bg);padding:10px 14px;border-bottom:1px solid var(--rule);">
+                <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mid);">Session 1 — Virtual (60 min total)</p>
+              </div>
+
+              <div style="padding:12px 14px;border-bottom:1px solid var(--rule);">
+                <p style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px;">Part 1 · Background &amp; Motivation (15 min)</p>
+                <p style="font-size:12px;color:var(--mid);line-height:1.6;">Conducted by one University of Maryland faculty supervisor. Covers academic background, relevant coursework or certifications, and the candidate's specific motivation for their chosen placement site. Reviewers assess clarity of purpose and fit with the program's business-focused research agenda.</p>
+              </div>
+
+              <div style="padding:12px 14px;border-bottom:1px solid var(--rule);">
+                <p style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px;">Part 2 · Technical Problem-Solving (20 min)</p>
+                <p style="font-size:12px;color:var(--mid);line-height:1.6;">Candidates are presented with a real-world scenario — a business that has suffered a security incident or an AI system with a suspected vulnerability — and asked to reason through the problem live. No memorized answers accepted; reviewers are evaluating analytical process, not just conclusions. Basic familiarity with frameworks such as MITRE or OWASP is expected.</p>
+              </div>
+
+              <div style="padding:12px 14px;">
+                <p style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px;">Part 3 · Communication &amp; Translation Exercise (25 min)</p>
+                <p style="font-size:12px;color:var(--mid);line-height:1.6;">Candidates are given a brief technical finding — a short vulnerability summary or security assessment excerpt — and asked to explain it as if presenting to a non-technical business executive. This section tests the candidate's ability to communicate risk in plain language, a critical skill for any professional working at the interface of security and business leadership.</p>
+              </div>
+            </div>
+
+            <div style="border:1px solid var(--rule);border-radius:6px;overflow:hidden;">
+              <div style="background:var(--tag-bg);padding:10px 14px;border-bottom:1px solid var(--rule);">
+                <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mid);">Session 2 — Panel (55 min total) · Top 15 candidates only</p>
+              </div>
+
+              <div style="padding:12px 14px;border-bottom:1px solid var(--rule);">
+                <p style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px;">Part 4 · Research Pitch (10 min)</p>
+                <p style="font-size:12px;color:var(--mid);line-height:1.6;">Candidates prepare and deliver a 7–10 minute structured pitch on a cybersecurity or AI security challenge relevant to their chosen placement site — either a current threat facing businesses in Singapore or a policy or compliance issue in the Barcelona/EU context. The panel evaluates depth of understanding, quality of sourcing, and how clearly the candidate frames the problem and potential approaches. Slides are optional but not required.</p>
+              </div>
+
+              <div style="padding:12px 14px;">
+                <p style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px;">Part 5 · Panel Q&amp;A (45 min)</p>
+                <p style="font-size:12px;color:var(--mid);line-height:1.6;">A three-person panel — two University of Maryland faculty supervisors and one representative from the host institution (NUS or UAB) — conducts a structured interview covering cross-cultural professional readiness, response to ambiguous or high-pressure scenarios, ethical decision-making in security contexts, and program-specific questions about the candidate's planned contributions. This session is designed to be challenging; candidates are expected to think carefully, acknowledge uncertainty when appropriate, and demonstrate professional maturity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="selection-step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h4>Background Review &amp; Final Offer <span style="font-size:11px;font-weight:400;color:var(--light);margin-left:8px;">10 offers extended</span></h4>
+            <p>Final candidates undergo an academic standing and conduct review conducted by the iSchool Global Programs Office. Official offer letters are issued within 10 business days. Accepted participants must confirm within 5 business days and immediately begin the pre-departure workshop enrollment process. Declining after confirmation forfeits the spot to the waitlist.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acceptance stats bar -->
+      <div style="background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;margin-top:16px;margin-bottom:20px;">
+        <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--light);margin-bottom:12px;">Applicant funnel — projected 2025 cohort</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--mid);margin-bottom:4px;"><span>Initial applicants</span><span style="font-weight:500;color:var(--dark);">~250</span></div>
+            <div style="background:var(--rule);border-radius:3px;height:7px;"><div style="background:var(--navy);width:100%;height:7px;border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--mid);margin-bottom:4px;"><span>Writing sample review</span><span style="font-weight:500;color:var(--dark);">~80</span></div>
+            <div style="background:var(--rule);border-radius:3px;height:7px;"><div style="background:var(--navy);width:32%;height:7px;border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--mid);margin-bottom:4px;"><span>Shortlisted for interview</span><span style="font-weight:500;color:var(--dark);">30</span></div>
+            <div style="background:var(--rule);border-radius:3px;height:7px;"><div style="background:var(--red);width:12%;height:7px;border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--mid);margin-bottom:4px;"><span>Panel interview (Round 2)</span><span style="font-weight:500;color:var(--dark);">15</span></div>
+            <div style="background:var(--rule);border-radius:3px;height:7px;"><div style="background:var(--red);width:6%;height:7px;border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--mid);margin-bottom:4px;"><span>Final offers extended</span><span style="font-weight:500;color:var(--dark);">10</span></div>
+            <div style="background:var(--rule);border-radius:3px;height:7px;"><div style="background:var(--red);width:4%;height:7px;border-radius:3px;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="section-label" style="margin-top:28px;">Application Timeline</div>
+      <div class="timeline-row">
+        <div class="timeline-item">
+          <div class="t-date">Feb 1, 2025</div>
+          <div class="t-label">Applications open</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">Mar 14, 2025</div>
+          <div class="t-label">Application deadline</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">Mar 28, 2025</div>
+          <div class="t-label">Round 1 interviews</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">Apr 11, 2025</div>
+          <div class="t-label">Panel interviews</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">Apr 25, 2025</div>
+          <div class="t-label">Offers extended</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">May 5 – Jun 13</div>
+          <div class="t-label">Pre-departure workshops</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Questions? Contact the University of Maryland iSchool Global Programs Office &nbsp;·&nbsp; globalischool@umd.edu</p>
+  <div class="footer-right">UM-GERIP · Summer 2026</div>
+</footer>
+
+<script>
+  const p1 = document.getElementById('p1');
+  const heroEl = document.querySelector('.hero');
+  const contentEl = document.querySelectorAll('.content')[0];
+
+  function switchPage(pageId, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.page-nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    btn.classList.add('active');
+
+    if (pageId === 'p1') {
+      heroEl.style.display = '';
+      contentEl.style.display = '';
+    } else {
+      heroEl.style.display = 'none';
+      contentEl.style.display = 'none';
+    }
+    window.scrollTo(0,0);
+  }
+</script>
+
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:8px;padding:40px;width:380px;max-width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+      <div>
+        <p style="font-family:'EB Garamond',serif;font-size:16px;font-weight:600;color:#1a1a1a;margin:0;">Accepted Student Portal</p>
+        <p style="font-size:11px;color:#909090;margin:0;">University of Maryland · GERIP 2026</p>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <label style="font-size:11px;font-weight:500;color:#555;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px;">Student ID or Email</label>
+      <input id="loginUser" type="text" placeholder="" style="width:100%;padding:10px 12px;border:1px solid #e2e2e2;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:13.5px;box-sizing:border-box;outline:none;">
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="font-size:11px;font-weight:500;color:#555;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px;">Password</label>
+      <input id="loginPass" type="password" placeholder="••••••••" style="width:100%;padding:10px 12px;border:1px solid #e2e2e2;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:13.5px;box-sizing:border-box;outline:none;">
+    </div>
+    <button onclick="doLogin()" style="width:100%;background:#E21833;color:white;border:none;border-radius:4px;padding:11px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;margin-bottom:10px;">Sign In</button>
+    <button onclick="closeLogin()" style="width:100%;background:none;border:none;color:#909090;font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;padding:6px;">Cancel</button>
+    <p id="loginError" style="display:none;color:#E21833;font-size:12px;text-align:center;margin-top:8px;">Please enter your credentials to continue.</p>
+  </div>
+</div>
+
+<!-- ACCEPTED STUDENT PORTAL -->
+<div id="portalPage" style="display:none;min-height:100vh;background:#fafaf8;font-family:'DM Sans',sans-serif;">
+
+  <!-- Portal Header -->
+  <div style="background:#1a2744;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div>
+      <p style="font-family:'EB Garamond',serif;font-size:16px;font-weight:600;color:white;margin:0;">GERIP 2026 · Accepted Student Portal</p>
+      <p style="font-size:11px;color:rgba(255,255,255,0.45);margin:0;">University of Maryland · iSchool Global Programs</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="text-align:right;">
+        <p style="font-size:13px;font-weight:500;color:white;margin:0;">Welcome, Nesra</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);margin:0;">Singapore Placement · Summer 2025</p>
+      </div>
+      <button onclick="doLogout()" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:7px 14px;font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- Portal Content -->
+  <div style="max-width:900px;margin:0 auto;padding:40px 40px 60px;">
+
+    <!-- Welcome Banner -->
+    <div style="background:#E21833;border-radius:6px;padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <p style="font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:white;margin:0 0 4px;">Congratulations, Nesra.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.8);margin:0;">You have been officially accepted into the GERIP Summer 2026 cohort — Singapore site. Your placement begins June 15, 2026.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:4px;padding:10px 18px;text-align:center;">
+        <p id="daysCount" style="font-size:22px;font-weight:600;color:white;margin:0;font-family:'EB Garamond',serif;">—</p>
+        <p style="font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.06em;margin:0;">Days to departure</p>
+      </div>
+    </div>
+
+    <!-- Quick info row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;">
+      <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;padding:14px 16px;">
+        <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#909090;margin-bottom:4px;">Placement Site</p>
+        <p style="font-size:13px;font-weight:500;color:#111;margin:0;">🇸🇬 Singapore (NUS)</p>
+      </div>
+      <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;padding:14px 16px;">
+        <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#909090;margin-bottom:4px;">Program Dates</p>
+        <p style="font-size:13px;font-weight:500;color:#111;margin:0;">Jun 15 – Aug 12, 2026</p>
+      </div>
+      <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;padding:14px 16px;">
+        <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#909090;margin-bottom:4px;">Faculty Supervisor</p>
+        <p style="font-size:13px;font-weight:500;color:#111;margin:0;">Dr. Michelle Mazurek</p>
+      </div>
+      <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;padding:14px 16px;">
+        <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#909090;margin-bottom:4px;">Academic Credit</p>
+        <p style="font-size:13px;font-weight:500;color:#111;margin:0;">6 Credits (iSchool)</p>
+      </div>
+    </div>
+
+    <!-- SECTION: Singapore Arrival & Airport Logistics -->
+    <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+      <div style="background:#1a2744;padding:14px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">✈️</span>
+        <p style="font-size:13px;font-weight:600;color:white;margin:0;">Arrival & Airport Logistics — Changi Airport (SIN) to NUS</p>
+      </div>
+      <div style="padding:20px 24px;">
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:16px;">Your flight will arrive at <strong>Singapore Changi Airport</strong>, consistently ranked the world's best airport. It is modern, safe, extremely well-signed in English, and has multiple transportation options directly to NUS Kent Ridge campus. Below is everything you need from the moment you land.</p>
+
+        <div style="border-left:3px solid #E21833;padding-left:16px;margin-bottom:16px;">
+          <p style="font-size:12px;font-weight:600;color:#E21833;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Step 1 — Immigration & Customs</p>
+          <ul style="list-style:none;padding:0;font-size:13px;color:#444;line-height:1.75;">
+            <li>— Proceed to <strong>Immigration Clearance</strong> (follow signs for "Arrivals"). As a U.S. passport holder, you will use the standard immigration lanes. Singapore typically allows 30–90 day visa-free entry for U.S. citizens.</li>
+            <li>— Have your passport, program acceptance letter (provided in this portal), and NUS housing confirmation ready.</li>
+            <li>— After immigration, collect your checked luggage at the baggage claim hall, then proceed through the green "Nothing to Declare" lane at customs unless you have items to declare.</li>
+            <li>— The full immigration and customs process typically takes 20–40 minutes at off-peak times.</li>
+          </ul>
+        </div>
+
+        <div style="border-left:3px solid #E21833;padding-left:16px;margin-bottom:16px;">
+          <p style="font-size:12px;font-weight:600;color:#E21833;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Step 2 — Get Your EZ-Link Transit Card</p>
+          <ul style="list-style:none;padding:0;font-size:13px;color:#444;line-height:1.75;">
+            <li>— Before leaving the arrival hall, pick up an <strong>EZ-Link card</strong> from a TransitLink or 7-Eleven store inside the terminal. Cost: SGD $12 (includes SGD $7 stored value). This card covers all MRT trains and buses.</li>
+            <li>— Alternatively, you can use your contactless credit/debit card directly on MRT gates — but an EZ-Link card is cheaper per ride and recommended for daily use.</li>
+            <li>— <strong>Note:</strong> A preloaded program transit card will also be waiting for you at NUS check-in — so you only need enough for the airport-to-campus trip.</li>
+          </ul>
+        </div>
+
+        <div style="border-left:3px solid #E21833;padding-left:16px;margin-bottom:16px;">
+          <p style="font-size:12px;font-weight:600;color:#E21833;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Step 3 — Transportation from Changi to NUS (Program-Provided)</p>
+          <div style="background:#e8f5e9;border:1px solid #c8e6c9;border-radius:5px;padding:14px 16px;margin-bottom:10px;">
+            <p style="font-size:12.5px;color:#2e7d32;font-weight:500;margin-bottom:6px;">🚌 Program transport is fully arranged — no booking required.</p>
+            <p style="font-size:12.5px;color:#444;line-height:1.7;margin:0;">A GERIP-chartered coach will be waiting in the <strong>Arrival Hall, Terminal 1</strong> at Changi Airport on June 15 to transfer all students and instructors directly to NUS Kent Ridge campus. Look for the <strong>UMD GERIP 2026</strong> sign held by the program coordinator.</p>
+          </div>
+          <ul style="list-style:none;padding:0;font-size:13px;color:#444;line-height:1.75;">
+            <li>— <strong>Meeting point:</strong> Arrival Hall, Terminal 1 — Ground Transport bay, Exit A. If arriving at Terminal 2 or 3, follow signs to Terminal 1 Arrival Hall (connected via Skytrain, free and signposted).</li>
+            <li>— <strong>Coach departure:</strong> The coach departs at <strong>3:00 PM</strong> on June 15. If your flight arrives after 2:00 PM, a second transfer at <strong>7:00 PM</strong> is also available. Notify the program office of your flight arrival time so you are assigned to the correct transfer.</li>
+            <li>— <strong>Travel time:</strong> Approximately 40–50 minutes from Changi to NUS Kent Ridge, depending on traffic.</li>
+            <li>— <strong>Missed transfer:</strong> If you miss both coaches due to a delayed flight, take a Grab (SGD ~$30–40) or the MRT East-West Line to Buona Vista then Bus 95 to NUS. Keep your receipt — the program office will reimburse ground transport costs due to flight delays.</li>
+          </ul>
+        </div>
+
+        <div style="border-left:3px solid #E21833;padding-left:16px;">
+          <p style="font-size:12px;font-weight:600;color:#E21833;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Step 4 — NUS Kent Ridge Check-In</p>
+          <ul style="list-style:none;padding:0;font-size:13px;color:#444;line-height:1.75;">
+            <li>— Go to <strong>Prince George's Park Residences (PGP)</strong>, the international student housing complex. Address: 91 West Coast Road, Singapore 127982.</li>
+            <li>— The GERIP program coordinator will be at the check-in desk throughout your arrival window. The 24-hour reception desk also has your room assignment and key card if you arrive outside of scheduled hours.</li>
+            <li>— You will receive: room key, welcome kit, preloaded EZ-Link transit card, campus map, and your onboarding schedule for Week 1.</li>
+            <li>— Emergency contact on arrival day: <strong>Dr. Michelle Mazurek — +1 (301) 405-XXXX</strong> (full number provided in your offer letter).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Housing Details -->
+    <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+      <div style="background:#1a2744;padding:14px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">🏠</span>
+        <p style="font-size:13px;font-weight:600;color:white;margin:0;">On-Campus Housing — NUS Prince George's Park Residences</p>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">Address</p>
+            <p style="font-size:13px;color:#333;line-height:1.6;">Prince George's Park Residences (PGP)<br>91 West Coast Road<br>Singapore 127982</p>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">Room Type</p>
+            <p style="font-size:13px;color:#333;line-height:1.6;">Double-occupancy, fully furnished<br>Air-conditioned<br>Shared bathroom (2-person suite)</p>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">Included</p>
+            <p style="font-size:13px;color:#333;line-height:1.6;">Bed, desk, wardrobe, Wi-Fi<br>Access to laundry, gym, study lounges<br>24-hour security and reception</p>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">Getting Around Campus</p>
+            <p style="font-size:13px;color:#333;line-height:1.6;">NUS operates a free internal shuttle bus (ISB) every 5–10 minutes across campus. Routes A1, A2, D2 all connect PGP to the School of Computing.</p>
+          </div>
+        </div>
+        <div style="background:#f7f7f5;border-radius:4px;padding:12px 16px;font-size:12.5px;color:#555;line-height:1.65;margin-bottom:20px;">
+          <strong>Roommate:</strong> You have been matched with a fellow GERIP cohort member. Your roommate's contact information will be shared via email 2 weeks before arrival. A roommate preferences form was submitted during onboarding — your match reflects those preferences.
+        </div>
+
+        <!-- ACCESS & SECURITY -->
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#909090;border-bottom:1px solid #e2e2e2;padding-bottom:8px;margin-bottom:14px;">Access & Security</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">🔑 Key Card System</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>— Each resident receives a <strong>personal key card</strong> at check-in, issued in your name and registered to your room only.</li>
+              <li>— The card is required to enter the residence building, your floor, and your individual room — three separate access points.</li>
+              <li>— Lost cards must be reported immediately to the front desk. A replacement fee applies and the lost card is deactivated within minutes of the report.</li>
+              <li>— All card swipes are logged with timestamp and location. Building management can pull access records at any time.</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">🔒 Building Security</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>— PGP Residences has <strong>24-hour manned security</strong> at the main entrance. All visitors must sign in with ID and state the resident they are visiting.</li>
+              <li>— CCTV cameras are active throughout all common areas, corridors, laundry rooms, and building entrances.</li>
+              <li>— Only registered residents may access the residential floors after 10:00 PM. No unregistered overnight guests permitted.</li>
+              <li>— The NUS Campus Security Office (6516-7777) is available 24 hours and patrols the residential area throughout the night.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- RULES & RESTRICTIONS -->
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#909090;border-bottom:1px solid #e2e2e2;padding-bottom:8px;margin-bottom:14px;">Residence Rules & Restrictions</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">🕙 Hours & Guests</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>— Quiet hours: <strong>11:00 PM – 7:00 AM</strong> daily. Common areas are accessible 24 hours but noise restrictions are enforced.</li>
+              <li>— Visitors are permitted in common areas only and must be signed in at reception with a valid photo ID.</li>
+              <li>— No visitors are allowed on residential floors after 10:00 PM under any circumstances.</li>
+              <li>— Overnight guests require written approval from PGP management, which is not automatically granted to program participants.</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">📋 General Conduct</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>— Alcohol is strictly prohibited in all residential areas including individual rooms. This is a NUS policy and a GERIP program requirement.</li>
+              <li>— Smoking is prohibited throughout the entire PGP complex, including outdoor areas of the building.</li>
+              <li>— Residents are responsible for the cleanliness of their room. Housekeeping inspections are conducted weekly.</li>
+              <li>— Violations of residence rules are reported to the GERIP program office and may result in removal from the program.</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">🏠 What's in the Room</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>— Single bed with mattress, pillow, and bedding set provided</li>
+              <li>— Study desk, chair, wardrobe with lock</li>
+              <li>— Air conditioning (individual room control)</li>
+              <li>— High-speed Wi-Fi (eduroam network — accessible with UMD credentials)</li>
+              <li>— Shared bathroom between 2 suite residents — cleaned daily by housekeeping</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">🧺 Shared Facilities</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>— Laundry rooms on every floor — washers and dryers available (small per-load fee, payable by card)</li>
+              <li>— Common kitchen on each floor — microwave, kettle, refrigerator</li>
+              <li>— Study lounges and reading rooms — open 24 hours</li>
+              <li>— Gym and fitness center — open 6:30 AM to 11:00 PM</li>
+              <li>— Campus convenience store and ATM within a 3-minute walk</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:#fff0f2;border:1px solid #f5c0c8;border-radius:4px;padding:13px 16px;font-size:12.5px;color:#b01020;line-height:1.65;">
+          <strong>Program note:</strong> GERIP participants are held to both NUS residence rules and the University of Maryland's student conduct standards while abroad. Any violation serious enough to result in removal from NUS housing also constitutes grounds for removal from the program. The program office is notified of any conduct incidents within 24 hours.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Transportation in Singapore -->
+    <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+      <div style="background:#1a2744;padding:14px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">🚇</span>
+        <p style="font-size:13px;font-weight:600;color:white;margin:0;">Getting Around Singapore — Day-to-Day Transport</p>
+      </div>
+      <div style="padding:20px 24px;">
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:16px;">Singapore has one of the best public transit systems in the world. The MRT (Mass Rapid Transit) is clean, punctual, fully air-conditioned, and entirely in English. Fares are cheap — most rides within the city are under SGD $2.50. Your program-issued EZ-Link card is preloaded and covers all MRT and public bus travel for the duration of the program.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;">
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">MRT Lines to Know</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>🟢 <strong>East-West Line</strong> — Main line across the city. Use for Orchard, City Hall, Changi Airport.</li>
+              <li>🔴 <strong>North-South Line</strong> — Connects to Orchard Road, Marina Bay, Dhoby Ghaut.</li>
+              <li>🟡 <strong>Circle Line</strong> — Connects to one-north, Buona Vista (nearest MRT to NUS).</li>
+              <li>🔵 <strong>Downtown Line</strong> — Bugis, Little India, Chinatown, Botanic Gardens.</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+            <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">Key Apps to Download</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.75;">
+              <li>📱 <strong>MyTransport.SG</strong> — Official LTA app. Live bus arrivals, MRT maps, journey planner.</li>
+              <li>📱 <strong>Grab</strong> — Southeast Asia's Uber. GrabCar, GrabFood, GrabMart all on one app.</li>
+              <li>📱 <strong>Google Maps</strong> — Works excellently in Singapore for transit directions.</li>
+              <li>📱 <strong>Citymapper</strong> — Excellent for bus + MRT combination routes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px 16px;">
+          <p style="font-size:12px;font-weight:600;color:#1a2744;margin-bottom:8px;">NUS Internal Shuttle Bus (ISB) — Free</p>
+          <p style="font-size:12.5px;color:#555;line-height:1.7;">The NUS campus is large (~150 hectares) but fully served by free internal shuttle buses running every 5–10 minutes between 7:30 AM and 11:00 PM on weekdays. Routes A1, A2, B, C, D1, D2, and K cover all major buildings. Your student card doubles as your bus pass. The NUS NextBus app shows real-time shuttle arrivals.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: What to Bring -->
+    <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+      <div style="background:#1a2744;padding:14px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">🧳</span>
+        <p style="font-size:13px;font-weight:600;color:white;margin:0;">What to Pack — Singapore</p>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#E21833;margin-bottom:8px;">Documents (carry-on)</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.8;">
+              <li>✓ U.S. Passport (valid 6+ months)</li>
+              <li>✓ GERIP Acceptance Letter</li>
+              <li>✓ NUS Housing Confirmation</li>
+              <li>✓ Travel insurance card</li>
+              <li>✓ Emergency contact sheet</li>
+              <li>✓ Printed flight itinerary</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#E21833;margin-bottom:8px;">Tech & Adapters</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.8;">
+              <li>✓ Type G adapter (Singapore standard)</li>
+              <li>✓ Laptop + charger</li>
+              <li>✓ International SIM or eSIM</li>
+              <li>✓ Portable power bank</li>
+              <li>✓ USB-C hub if needed</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#E21833;margin-bottom:8px;">Clothing & Personal</p>
+            <ul style="list-style:none;padding:0;font-size:12.5px;color:#555;line-height:1.8;">
+              <li>✓ Light clothing (hot & humid year-round)</li>
+              <li>✓ Light cardigan/layer (AC in buildings is cold)</li>
+              <li>✓ 1–2 business-casual outfits for lab meetings</li>
+              <li>✓ Comfortable walking shoes</li>
+              <li>✓ Umbrella or rain poncho</li>
+              <li>✓ Sunscreen (UV index is very high)</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#fff3e0;border:1px solid #ffe082;border-radius:4px;padding:12px 16px;font-size:12.5px;color:#7a5c00;margin-top:14px;line-height:1.65;">
+          <strong>Halal food note:</strong> Singapore is extremely well-accommodated for halal dining. The campus dining hall has a dedicated certified halal station at every meal. Externally, a large portion of food courts (hawker centres) have halal-certified stalls clearly marked with the MUIS halal logo. Muslim prayer rooms are available in all major buildings on the NUS campus.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Week 1 Schedule -->
+    <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+      <div style="background:#1a2744;padding:14px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">📅</span>
+        <p style="font-size:13px;font-weight:600;color:white;margin:0;">Week 1 Orientation Schedule — Singapore Cohort</p>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid #e2e2e2;border-radius:4px;overflow:hidden;">
+            <div style="background:#f7f7f5;padding:12px 14px;display:flex;align-items:center;"><p style="font-size:11.5px;font-weight:600;color:#1a2744;margin:0;">Tue Jun 16</p></div>
+            <div style="padding:12px 16px;"><p style="font-size:12.5px;color:#444;margin:0;line-height:1.6;"><strong>Arrival Day.</strong> Program-chartered coach departs Changi Airport at 3:00 PM and 7:00 PM (see airport logistics above). Check-in at PGP Residences upon arrival. Settle in, rest. Welcome dinner with faculty and all instructors at 7:30 PM in the PGP Dining Hall.</p></div>
+          </div>
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid #e2e2e2;border-radius:4px;overflow:hidden;">
+            <div style="background:#f7f7f5;padding:12px 14px;display:flex;align-items:center;"><p style="font-size:11.5px;font-weight:600;color:#1a2744;margin:0;">Tue Jun 16</p></div>
+            <div style="padding:12px 16px;"><p style="font-size:12.5px;color:#444;margin:0;line-height:1.6;"><strong>9:00 AM — Program Orientation</strong> at NUS School of Computing, SR1. Faculty introductions, program overview, expectations, and code of conduct. Safety and emergency briefing at 11:00 AM. Afternoon: Student ID card pickup at NUS Card Services.</p></div>
+          </div>
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid #e2e2e2;border-radius:4px;overflow:hidden;">
+            <div style="background:#f7f7f5;padding:12px 14px;display:flex;align-items:center;"><p style="font-size:11.5px;font-weight:600;color:#1a2744;margin:0;">Wed Jun 17</p></div>
+            <div style="padding:12px 16px;"><p style="font-size:12.5px;color:#444;margin:0;line-height:1.6;"><strong>City Orientation.</strong> Guided introduction to Singapore led by NUS student ambassadors. Covers Orchard Road, Marina Bay Sands, Chinatown, Little India, and Clarke Quay. MRT navigation practice. Group lunch at Lau Pa Sat hawker centre — halal options confirmed.</p></div>
+          </div>
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid #e2e2e2;border-radius:4px;overflow:hidden;">
+            <div style="background:#f7f7f5;padding:12px 14px;display:flex;align-items:center;"><p style="font-size:11.5px;font-weight:600;color:#1a2744;margin:0;">Thu Jun 18</p></div>
+            <div style="padding:12px 16px;"><p style="font-size:12.5px;color:#444;margin:0;line-height:1.6;"><strong>Free day.</strong> Explore independently. Suggested: Botanic Gardens (UNESCO World Heritage Site, free entry), Haji Lane cultural district, or Gardens by the Bay. No scheduled activities.</p></div>
+          </div>
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid #e2e2e2;border-radius:4px;overflow:hidden;">
+            <div style="background:#f7f7f5;padding:12px 14px;display:flex;align-items:center;"><p style="font-size:11.5px;font-weight:600;color:#1a2744;margin:0;">Fri Jun 19</p></div>
+            <div style="padding:12px 16px;"><p style="font-size:12.5px;color:#444;margin:0;line-height:1.6;"><strong>Free weekend.</strong> Final prep before technical work begins Monday. Get lab environment set up on personal laptop (setup guide provided at orientation). Suggested: find your halal dining options on campus and nearby.</p></div>
+          </div>
+          <div style="display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid #e2e2e2;border-radius:4px;overflow:hidden;">
+            <div style="background:#fff0f2;padding:12px 14px;display:flex;align-items:center;"><p style="font-size:11.5px;font-weight:600;color:#E21833;margin:0;">Mon Jun 22</p></div>
+            <div style="padding:12px 16px;"><p style="font-size:12.5px;color:#444;margin:0;line-height:1.6;"><strong>Technical work begins.</strong> 9:00 AM lab onboarding at NUS School of Computing. Partner organization briefings, project assignments, and tool setup. Full program schedule from this point forward.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Emergency & Support Contacts -->
+    <div style="background:white;border:1px solid #e2e2e2;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+      <div style="background:#1a2744;padding:14px 20px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">📞</span>
+        <p style="font-size:13px;font-weight:600;color:white;margin:0;">Emergency & Support Contacts</p>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px;">
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">Singapore Emergency</p>
+            <p style="font-size:20px;font-weight:600;color:#E21833;margin:0;">999</p>
+            <p style="font-size:12px;color:#888;margin-top:2px;">Police · Fire · Ambulance</p>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px;">
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">UMD 24/7 Emergency Line</p>
+            <p style="font-size:20px;font-weight:600;color:#E21833;margin:0;">+1 (301) 405-3333</p>
+            <p style="font-size:12px;color:#888;margin-top:2px;">Available any hour for enrolled students abroad</p>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px;">
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">On-Site Faculty Supervisor</p>
+            <p style="font-size:14px;font-weight:600;color:#1a2744;margin:0;">Dr. Michelle Mazurek</p>
+            <p style="font-size:12px;color:#888;margin-top:2px;">Contact via program email (in offer letter)</p>
+          </div>
+          <div style="border:1px solid #e2e2e2;border-radius:5px;padding:14px;">
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:6px;">NUS Campus Security</p>
+            <p style="font-size:20px;font-weight:600;color:#E21833;margin:0;">6516-7777</p>
+            <p style="font-size:12px;color:#888;margin-top:2px;">NUS Office of Campus Security · 24 hours</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#f0f4ff;border:1px solid #c5d2f7;border-radius:4px;padding:14px 18px;font-size:12.5px;color:#1a4fa0;line-height:1.65;text-align:center;">
+      Questions? Email the iSchool Global Programs Office at <strong>globalischool@umd.edu</strong> or contact Dr. Mazurek directly via your program email thread. Response time is within 24 hours on business days.
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Countdown to June 17 departure
+(function() {
+  function updateCountdown() {
+    var departure = new Date('2026-06-15T00:00:00');
+    var now = new Date();
+    var diff = departure - now;
+    var days = diff > 0 ? Math.ceil(diff / (1000 * 60 * 60 * 24)) : 0;
+    var el = document.getElementById('daysCount');
+    if (el) el.textContent = days;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+})();
+
+function openLogin() {
+  document.getElementById('loginModal').style.display = 'flex';
+}
+function closeLogin() {
+  document.getElementById('loginModal').style.display = 'none';
+  document.getElementById('loginError').style.display = 'none';
+}
+function doLogin() {
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+  if (!user || !pass) {
+    document.getElementById('loginError').style.display = 'block';
+    return;
+  }
+  // Any credentials work - just close modal and show portal
+  closeLogin();
+  document.getElementById('portalPage').style.display = 'block';
+  document.getElementById('portalPage').scrollIntoView({behavior:'smooth'});
+  // Hide the main site
+  document.querySelector('.top-stripe').style.display = 'none';
+  document.querySelector('.header').style.display = 'none';
+  document.querySelector('.page-nav').style.display = 'none';
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.hero').forEach(h => h.style.display = 'none');
+  document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+  document.querySelectorAll('footer').forEach(f => f.style.display = 'none');
+  window.scrollTo(0,0);
+}
+function doLogout() {
+  document.getElementById('portalPage').style.display = 'none';
+  document.querySelector('.top-stripe').style.display = 'block';
+  document.querySelector('.header').style.display = 'flex';
+  document.querySelector('.page-nav').style.display = 'flex';
+  // restore p1
+  document.getElementById('p1').style.display = 'block';
+  document.querySelectorAll('.hero').forEach(h => h.style.display = 'block');
+  document.querySelectorAll('.content').forEach(c => c.style.display = 'block');
+  document.querySelectorAll('footer').forEach(f => f.style.display = 'block');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
 </html>
